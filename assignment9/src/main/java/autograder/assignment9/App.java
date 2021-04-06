@@ -35,28 +35,15 @@ public class App
 		Sheet sheet = wb.getSheetAt(0);
 		int TCRowNumbers[] = new int[6];
 		
-		//find rownumbers of lines that contain TC1, TC2, TC3, TC4, TC5
+		//find row numbers of lines that contain TC1, TC2, TC3, TC4, TC5
 		for(Row row: sheet) {
 			for(Cell cell : row) {
 				if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
-	                if (cell.getRichStringCellValue().getString().equals("TC1")) {
-	                	TCRowNumbers[0] = row.getRowNum();  
-	                }
-	                else if (cell.getRichStringCellValue().getString().equals("TC2")) {
-	                	TCRowNumbers[1] = row.getRowNum();  
-	                }
-	                else if (cell.getRichStringCellValue().getString().equals("TC3")) {
-	                	TCRowNumbers[2] = row.getRowNum();  
-	                }
-	                else if (cell.getRichStringCellValue().getString().equals("TC4")) {
-	                	TCRowNumbers[3] = row.getRowNum();  
-	                }
-	                else if (cell.getRichStringCellValue().getString().equals("TC5")) {
-	                	TCRowNumbers[4] = row.getRowNum();  
-	                }
-	                else if (cell.getRichStringCellValue().getString().equals("4. Which methods do you need to add to the implementation in order to perform your tests in a convenient manner? Suggest method names!")) {
-	                	TCRowNumbers[5] = row.getRowNum() - 1;  
-	                }
+					for(int i = 0; i < 6; i++) {
+						if (cell.getRichStringCellValue().getString().equals("TC" + (i + 1))) {
+		                	TCRowNumbers[i] = row.getRowNum();  
+		                }
+					}
 	            }
 			}
 		}
